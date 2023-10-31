@@ -1,13 +1,13 @@
 .main{
-    min-height: 60vh;
+    min-height: 90vh;
     text-align: center;
-    padding: 2em;
+    padding: 5em;
 }
 
 .main h2 {
     margin-bottom: 0.8em;
 }
 
-.error {
-    color:rgba(200, 14, 14, 0.81)
+.erro {
+    color: red;
 }

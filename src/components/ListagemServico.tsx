@@ -3,10 +3,10 @@ import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
 import styles from '../App.module.css';
-import { CadastroClienteInterface } from "../Interfaces/CadastroClienteInterface";
+import { CadastroServicoInterface } from "../Interfaces/CadastroServicoInterface";
 
-const ListagemClientes = () => {
-    const [clientes, setClientes] = useState<CadastroClienteInterface[]>([]);
+const ListagemServicos = () => {
+    const [servicos, setServicos] = useState<CadastroServicoInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
@@ -22,7 +22,7 @@ const ListagemClientes = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/nomeserviço',
                     { nome: pesquisa },
                     {
                         headers: {
@@ -30,7 +30,7 @@ const ListagemClientes = () => {
                             "Content-Type": "application/json"
                         }
                     }).then(function (response) {
-                        setClientes(response.data.data);
+                        setServicos(response.data.data);
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -44,9 +44,9 @@ const ListagemClientes = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudo');
+                const response = await axios.get('http://127.0.0.1:8000/api/retornarTodos');
                 console.log(response.data.data);
-                setClientes(response.data.data);
+                setServicos(response.data.data);
             } catch (error) {
                 setError("Ocrreu um erro");
                 console.log(error)
@@ -83,47 +83,27 @@ const ListagemClientes = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Usuários
+                                    Listagem de Seviços
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>celular</th>
-                                            <th>email</th>
-                                            <th>cpf</th>
-                                            <th>nascimento</th>
-                                            <th>cidade</th>
-                                            <th>estado</th>
-                                            <th>pais</th>
-                                            <th>rua</th>
-                                            <th>numero</th>
-                                            <th>bairro</th>
-                                            <th>cep</th>
-                                            <th>complemento</th>
-                                            <th>senha</th>
-                                            <th>Ações</th>
+                                            <th>descrição</th>
+                                            <th>duraçao</th>
+                                            <th>preço</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {clientes.map(clientes => (
-                                            <tr key={clientes.id}>
-                                                <td>{clientes.id}</td>
-                                                <td>{clientes.nome}</td>
-                                                <td>{clientes.celular}</td>
-                                                <td>{clientes.email}r</td>
-                                                <td>{clientes.cpf}r</td>
-                                                <td>{clientes.nascimento}r</td>
-                                                <td>{clientes.cidade}r</td>
-                                                <td>{clientes.estado}r</td>
-                                                <td>{clientes.pais}r</td>
-                                                <td>{clientes.rua}r</td>
-                                                <td>{clientes.numero}r</td>
-                                                <td>{clientes.bairro}r</td>
-                                                <td>{clientes.cep}r</td>
-                                                <td>{clientes.complemento}r</td>
-                                                <td>{clientes.password}r</td>
+                                        {servicos.map(servicos => (
+                                            <tr key={servicos.id}>
+                                                <td>{servicos.id}</td>
+                                                <td>{servicos.nome}</td>
+                                                <td>{servicos.descricao}</td>
+                                                <td>{servicos.duracao}r</td>
+                                                <td>{servicos.preco}r</td>
+                                               
 
                                                 <td>
                                                     <a href="#" className='btn btn-primary btn-sm'>Editar</a>
@@ -141,4 +121,4 @@ const ListagemClientes = () => {
         </div>
     );
 }
-export default ListagemClientes;
+export default ListagemServicos;

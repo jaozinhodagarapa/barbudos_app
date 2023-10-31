@@ -1,26 +1,29 @@
-import React, { Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
+import React,{Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
+import styles from '../App.module.css';
 import Footer from "./Footer"
 import Header from "./Header"
-import axios from "axios"
+import axios from "axios";
+
 
 const CadastroCliente = () => {
-    const[nome,setNome] = useState<string>("");
-    const[celular,setCelular] = useState<string>("");
-    const[email,setEmail] = useState<string>("");
-    const[cpf,setCpf] = useState<string>("");
-    const[nascimento,setNascimeto] = useState<string>("");
-    const[cidade,setCidade] = useState<string>("");
-    const[estado,setEstado] = useState<string>("");
-    const[rua,setRua] = useState<string>("");
-    const[numero,setNumero] = useState<string>("");
-    const[bairro,setBairro] = useState<string>("");
-    const[cep,setCep] = useState<string>("");
-    const[complemeto,setComplemeto] = useState<string>("");
-    const[password,setPassword] = useState<string>("");
+    const [nome, setNome] = useState<string>("");
+    const [celular,setCelular] = useState<string>("");
+    const [email,setEmail] = useState<string>("");
+    const [cpf,setCpf] = useState<string>("");
+    const [nascimento,setNascimento] = useState<string>("");
+    const [cidade,setCidade] = useState<string>("");
+    const [estado,setEstado] = useState<string>("");
+    const [pais,setPais] = useState<string>("");
+    const [rua,setRua] = useState<string>("");
+    const [numero,setNumero] = useState<string>("");
+    const [bairro,setBairro] = useState<string>("");
+    const [cep,setCep] = useState<string>("");
+    const [complemento,setComplemento] = useState<string>("");
+    const [password,setPassword] = useState<string>("");
     
-    const cadastrarCliente = (e:FormEvent) =>{
-        e.preventDefault()
+    const cadastrarCliente = (e: FormEvent) => {
+        e.preventDefault();
 
         const dados = {
             nome: nome,
@@ -30,13 +33,15 @@ const CadastroCliente = () => {
             nascimento: nascimento,
             cidade: cidade,
             estado: estado,
+            pais: pais,
             rua: rua,
             numero: numero,
             bairro: bairro,
             cep: cep,
-            complemeto: complemeto,
-            password: password,
+            complemento: complemento,
+            password: password
         }
+
         console.log(dados)
 
         axios.post('http://127.0.0.1:8000/api/criarCliente',
@@ -44,142 +49,223 @@ const CadastroCliente = () => {
         {
             headers:{
                 "Accept": "aplication/json",
-                "Content-type": "aplication/json"
+                "Content-Type": "aplication/json"
             }
         }
         ).then(function(response){
-            window.location.href = "/listagemClientes"
+            console.log(response.data)
+            window.location.href = "/listagem"
         }).catch(function(error){
             console.log(error)
         })
-    }    
-    
+    }
+
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
         if(e.target.name === "nome"){
             setNome(e.target.value)
         }
         if(e.target.name === "celular"){
-            setNome(e.target.value)
+            setCelular(e.target.value)
         }
         if(e.target.name === "email"){
-            setNome(e.target.value)
+            setEmail(e.target.value)
         }
         if(e.target.name === "cpf"){
-            setNome(e.target.value)
+            setCpf(e.target.value)
         }
         if(e.target.name === "nascimento"){
-            setNome(e.target.value)
+            setNascimento(e.target.value)
         }
         if(e.target.name === "cidade"){
-            setNome(e.target.value)
+            setCidade(e.target.value)
         }
         if(e.target.name === "estado"){
-            setNome(e.target.value)
+            setEstado(e.target.value)
+        }
+        if(e.target.name === "pais"){
+            setPais(e.target.value)
         }
         if(e.target.name === "rua"){
-            setNome(e.target.value)
+            setRua(e.target.value)
         }
         if(e.target.name === "numero"){
-            setNome(e.target.value)
+            setNumero(e.target.value)
         }
         if(e.target.name === "bairro"){
-            setNome(e.target.value)
+            setBairro(e.target.value)
         }
         if(e.target.name === "cep"){
-            setNome(e.target.value)
+            setCep(e.target.value)
         }
         if(e.target.name === "complemento"){
-            setNome(e.target.value)
+            setComplemento(e.target.value)
         }
         if(e.target.name === "password"){
-            setNome(e.target.value)
-        }
+            setPassword(e.target.value)
+        } 
     }
-    return(
+
+    return (
         <div>
-           <Header />
-               <main>
-                  <div className='container'>
+            <Header />
+            <main className={styles.main}>
+                <div className="container">
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Cadastrar Cliente</h5>
+                            <h5 className='card-tittle'>Cadastrar Cliente</h5>
                             <form onSubmit={cadastrarCliente} className='row g-3'>
                                 <div className='col-6'>
-                                    <label htmlFor="nome" className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required  onChange={handleState}/>
-                                    {nome}
+                                    <label htmlFor="nome" className='from-label'>Nome</label>
+                                    <input 
+                                    type="text" 
+                                    name='nome' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="email" className='form-label'>Celular</label>
-                                    <input type="text" name='celular' className='form-control' required onChange={handleState}/>
-                                    {celular}
+                                    <label htmlFor="celular" className='from-label'>celular</label>
+                                    <input 
+                                    type="text" 
+                                    name='celular' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="cpf" className='form-label'>E-mail</label>
-                                    <input type="text" name="email" className='form-control' required onChange={handleState} />
-                                    {email}
+                                    <label htmlFor="email" className='from-label'>email</label>
+                                    <input 
+                                    type="text" 
+                                    name='email' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>CPF</label>
-                                    <input type="text" name='cpf' className='form-control' required onChange={handleState}/>
-                                    {cpf}
+                                    <label htmlFor="cpf" className='from-label'>cpf</label>
+                                    <input 
+                                    type="text" 
+                                    name='cpf' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Nascimeto</label>
-                                    <input type="text" name='nascimento' className='form-control' required onChange={handleState}/>
-                                    {nascimento}
-                                </div> 
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Cidade</label>
-                                    <input type="text" name='cidade' className='form-control' required onChange={handleState}/>
-                                    {cidade}
-                                </div> 
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Estado</label>
-                                    <input type="text" name='estado' className='form-control' required onChange={handleState}/>
-                                    {estado}
-                                </div> 
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Rua</label>
-                                    <input type="text" name='rua' className='form-control' required onChange={handleState}/>
-                                    {rua}
-                                </div> 
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Número</label>
-                                    <input type="text" name='numero' className='form-control' required onChange={handleState}/>
-                                    {numero}
-                                </div>  
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Bairro</label>
-                                    <input type="text" name='bairro' className='form-control' required onChange={handleState}/>
-                                    {bairro}
-                                </div> 
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>CEP</label>
-                                    <input type="text" name='cep' className='form-control' required onChange={handleState}/>
-                                    {cep}
+                                    <label htmlFor="nascimento" className='from-label'>nascimento</label>
+                                    <input 
+                                    type="text" 
+                                    name='nascimento' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Complemento</label>
-                                    <input type="text" name='complemento' className='form-control' required onChange={handleState}/>
-                                    {complemeto}
-                                </div> 
+                                    <label htmlFor="cidade" className='from-label'>cidade</label>
+                                    <input 
+                                    type="text" 
+                                    name='cidade' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
                                 <div className='col-6'>
-                                    <label htmlFor="password" className='form-label'>Senha</label>
-                                    <input type="text" name='password' className='form-control' required onChange={handleState}/>
-                                    {password}
-                                </div>  
-                                  
+                                    <label htmlFor="estado" className='from-label'>estado</label>
+                                    <input 
+                                    type="text" 
+                                    name='estado' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="pais" className='from-label'>pais</label>
+                                    <input 
+                                    type="text" 
+                                    name='pais' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="rua" className='from-label'>rua</label>
+                                    <input 
+                                    type="text" 
+                                    name='rua' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="numero" className='from-label'>numero</label>
+                                    <input 
+                                    type="text" 
+                                    name='numero' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="bairro" className='from-label'>bairro</label>
+                                    <input 
+                                    type="text" 
+                                    name='bairro' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="cep" className='from-label'>cep</label>
+                                    <input 
+                                    type="text" 
+                                    name='cep' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="complemento" className='from-label'>complemento</label>
+                                    <input 
+                                    type="text" 
+                                    name='complemento' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="password" className='from-label'>senha</label>
+                                    <input 
+                                    type="text" 
+                                    name='password' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                
+                               
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sm'>Cadastrar</button>
-                                </div>            
+                                </div>
                             </form>
                         </div>
                     </div>
-                  </div>
-               </main>
-           <Footer/>
+                </div>
+            </main>
+            <Footer />
         </div>
-    ); 
+    );
 }
 export default CadastroCliente;

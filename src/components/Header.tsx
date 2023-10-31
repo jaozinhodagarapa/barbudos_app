@@ -1,11 +1,11 @@
 import React from "react";
 
-
+import styles from "./Header.module.css";
 
 const Header = () => {
     return (
-        <header >
-            <h1>Cadastro de Cliente</h1>
+        <header className={styles.header}>
+            <h1>Cadastro</h1>
         </header>
     );
 }

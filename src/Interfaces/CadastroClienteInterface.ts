@@ -8,7 +8,7 @@ export interface CadastroClienteInterface{
     cidade: string,
     estado: string,
     rua: string,
-    numero: number,
+    numero: string,
     bairro: string,
     cep: string,
     pais:string,
