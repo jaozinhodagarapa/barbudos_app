@@ -7,11 +7,11 @@ export interface CadastroClienteInterface{
     nascimento: string,
     cidade: string,
     estado: string,
+    pais:string,
     rua: string,
     numero: string,
     bairro: string,
     cep: string,
-    pais:string,
     complemento: string,
     password: string;
 }

@@ -2,18 +2,19 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
+import { isSetAccessorDeclaration } from "typescript";
 import styles from '../App.module.css';
-import { CadastroServicoInterface } from "../Interfaces/CadastroServicoInterface";
+import { CadastroProfissionalInterface } from "../Interfaces/CadastroProfissionalInterface";
 
-const ListagemServicos = () => {
-    const [servicos, setServicos] = useState<CadastroServicoInterface[]>([]);
+const ListagemProfissionais = () => {
+    const [profissionais, setProfissionais] = useState<CadastroProfissionalInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === "pesquisa") {
-            setPesquisa(e.target.name);
+            setPesquisa(e.target.value);
         }
     }
 
@@ -22,33 +23,38 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/Profissional',
                     { nome: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
-                    }).then(function (response) {
-                        setServicos(response.data.data);
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+                    }
+                ).then(function (response) {
+                    if (true === response.data.status) {
+                        console.log(response.data.status)
+                        setProfissionais(response.data.data)
+                    }else setProfissionais([])
+                }).catch(function (error) {
+                    console.log(error)
+                });
+
             } catch (error) {
                 console.log(error);
             }
-        }
+        }   
         fetchData();
     }
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudo');
+                const response = await axios.get('http://127.0.0.1:8000/api/retornartodosProfissionais');
                 console.log(response.data.data);
-                setServicos(response.data.data);
+                setProfissionais(response.data.data);
             } catch (error) {
-                setError("Ocrreu um erro");
+                setError("Ocorreu um erro");
                 console.log(error)
             }
         }
@@ -60,20 +66,20 @@ const ListagemServicos = () => {
         <div>
             <main className={styles.main}>
                 <div className='container'>
-
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name="pesquisa"
-                                            className='form-control'
+                                        <input type="text" name='pesquisa' className='form-control'
                                             onChange={handleState} />
+
                                     </div>
                                     <div className='col-1'>
                                         <button type='submit' className='btn btn-success'>Pesquisar</button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -83,27 +89,28 @@ const ListagemServicos = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Seviços
+                                    Listagem de Profissionais
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>descrição</th>
-                                            <th>duraçao</th>
-                                            <th>preço</th>
+                                            <th>celular</th>
+                                            <th>salario</th>
+                                            <th>E-mail</th>
+                                            <th>Cpf</th> 
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {servicos.map(servicos => (
-                                            <tr key={servicos.id}>
-                                                <td>{servicos.id}</td>
-                                                <td>{servicos.nome}</td>
-                                                <td>{servicos.descricao}</td>
-                                                <td>{servicos.duracao}</td>
-                                                <td>{servicos.preco}</td>
-                                               
+                                        {profissionais.map(profissionais => (
+                                            <tr key={profissionais.id}>
+                                                <td>{profissionais.id}</td>
+                                                <td>{profissionais.nome}</td>                                                <td>{profissionais.salario}</td>
+                                                <td>{profissionais.celular}</td>
+                                                <td>{profissionais.email}</td>
+                                                <td>{profissionais.cpf}</td>
 
                                                 <td>
                                                     <a href="#" className='btn btn-primary btn-sm'>Editar</a>
@@ -121,4 +128,4 @@ const ListagemServicos = () => {
         </div>
     );
 }
-export default ListagemServicos;
+export default ListagemProfissionais;

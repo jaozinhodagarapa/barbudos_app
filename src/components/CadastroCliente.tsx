@@ -54,7 +54,7 @@ const CadastroCliente = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagem"
+           
         }).catch(function(error){
             console.log(error)
         })
@@ -125,7 +125,7 @@ const CadastroCliente = () => {
                                     />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="celular" className='from-label'>celular</label>
+                                    <label htmlFor="celular" className='from-label'>Celular</label>
                                     <input 
                                     type="text" 
                                     name='celular' 
@@ -134,8 +134,8 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="email" className='from-label'>email</label>
+                                <div className='col-4'>
+                                    <label htmlFor="email" className='from-label'>Email</label>
                                     <input 
                                     type="text" 
                                     name='email' 
@@ -144,8 +144,8 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="cpf" className='from-label'>cpf</label>
+                                <div className='col-4'>
+                                    <label htmlFor="cpf" className='from-label'>CPF</label>
                                     <input 
                                     type="text" 
                                     name='cpf' 
@@ -154,8 +154,8 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="nascimento" className='from-label'>nascimento</label>
+                                <div className='col-4'>
+                                    <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
                                     type="text" 
                                     name='nascimento' 
@@ -164,68 +164,8 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="cidade" className='from-label'>cidade</label>
-                                    <input 
-                                    type="text" 
-                                    name='cidade' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="estado" className='from-label'>estado</label>
-                                    <input 
-                                    type="text" 
-                                    name='estado' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="pais" className='from-label'>pais</label>
-                                    <input 
-                                    type="text" 
-                                    name='pais' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="rua" className='from-label'>rua</label>
-                                    <input 
-                                    type="text" 
-                                    name='rua' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="numero" className='from-label'>numero</label>
-                                    <input 
-                                    type="text" 
-                                    name='numero' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="bairro" className='from-label'>bairro</label>
-                                    <input 
-                                    type="text" 
-                                    name='bairro' 
-                                    className='form-control'
-                                    required 
-                                    onChange={handleState}
-                                    />                                    
-                                </div>
-                                <div className='col-6'>
-                                    <label htmlFor="cep" className='from-label'>cep</label>
+                                <div className='col-4'>
+                                    <label htmlFor="cidade" className='from-label'>Cep</label>
                                     <input 
                                     type="text" 
                                     name='cep' 
@@ -234,8 +174,68 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="complemento" className='from-label'>complemento</label>
+                                <div className='col-4'>
+                                    <label htmlFor="estado" className='from-label'>Estado</label>
+                                    <input 
+                                    type="text" 
+                                    name='estado' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="pais" className='from-label'>País</label>
+                                    <input 
+                                    type="text" 
+                                    name='pais' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="rua" className='from-label'>Rua</label>
+                                    <input 
+                                    type="text" 
+                                    name='rua' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="numero" className='from-label'>Numero</label>
+                                    <input 
+                                    type="text" 
+                                    name='numero' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="bairro" className='from-label'>Bairro</label>
+                                    <input 
+                                    type="text" 
+                                    name='bairro' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="cep" className='from-label'>Cidade</label>
+                                    <input 
+                                    type="text" 
+                                    name='cidade' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    />                                    
+                                </div>
+                                <div className='col-4'>
+                                    <label htmlFor="complemento" className='from-label'>Complemento</label>
                                     <input 
                                     type="text" 
                                     name='complemento' 
@@ -244,10 +244,10 @@ const CadastroCliente = () => {
                                     onChange={handleState}
                                     />                                    
                                 </div>
-                                <div className='col-6'>
-                                    <label htmlFor="password" className='from-label'>senha</label>
+                                <div className='col-4'>
+                                    <label htmlFor="password" className='from-label'>Senha</label>
                                     <input 
-                                    type="text" 
+                                    type="password" 
                                     name='password' 
                                     className='form-control'
                                     required 

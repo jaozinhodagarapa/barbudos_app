@@ -112,18 +112,18 @@ const ListagemClientes = () => {
                                                 <td>{clientes.id}</td>
                                                 <td>{clientes.nome}</td>
                                                 <td>{clientes.celular}</td>
-                                                <td>{clientes.email}r</td>
-                                                <td>{clientes.cpf}r</td>
-                                                <td>{clientes.nascimento}r</td>
-                                                <td>{clientes.cidade}r</td>
-                                                <td>{clientes.estado}r</td>
-                                                <td>{clientes.pais}r</td>
-                                                <td>{clientes.rua}r</td>
-                                                <td>{clientes.numero}r</td>
-                                                <td>{clientes.bairro}r</td>
-                                                <td>{clientes.cep}r</td>
-                                                <td>{clientes.complemento}r</td>
-                                                <td>{clientes.password}r</td>
+                                                <td>{clientes.email}</td>
+                                                <td>{clientes.cpf}</td>
+                                                <td>{clientes.nascimento}</td>
+                                                <td>{clientes.cidade}</td>
+                                                <td>{clientes.estado}</td>
+                                                <td>{clientes.pais}</td>
+                                                <td>{clientes.rua}</td>
+                                                <td>{clientes.numero}</td>
+                                                <td>{clientes.bairro}</td>
+                                                <td>{clientes.cep}</td>
+                                                <td>{clientes.complemento}</td>
+                                                <td>{clientes.password}</td>
 
                                                 <td>
                                                     <a href="#" className='btn btn-primary btn-sm'>Editar</a>
