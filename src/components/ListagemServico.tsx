@@ -107,8 +107,8 @@ const ListagemServicos = () => {
                                                 <td>{servicos.id}</td>
                                                 <td>{servicos.nome}</td>
                                                 <td>{servicos.descricao}</td>
-                                                <td>{servicos.duracao}r</td>
-                                                <td>{servicos.preco}r</td>
+                                                <td>{servicos.duracao}</td>
+                                                <td>{servicos.preco}</td>
                                                
 
                                                 <td>
