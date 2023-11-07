@@ -35,8 +35,7 @@ const ListagemServicos = () => {
                         console.log(response.data.status)
                         setServicos(response.data.data)
                     } else {
-                    setServicos([])
-                }
+                    setServicos([])}
                 }).catch(function (error) {
                     console.log(error)
                 });
