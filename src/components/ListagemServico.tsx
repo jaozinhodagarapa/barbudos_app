@@ -12,8 +12,8 @@ const ListagemServicos = () => {
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisa") {
-            setPesquisa(e.target.name);
+        if (e.target.name === "pesquisaServico") {
+            setPesquisa(e.target.value);
         }
     }
 
@@ -22,23 +22,30 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/nomes',
                     { nome: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
-                    }).then(function (response) {
-                        setServicos(response.data.data);
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+                    }
+                ).then(function (response) {
+                    if (true === response.data.status) {
+                        console.log(response.data.status)
+                        setServicos(response.data.data)
+                    } else {
+                    setServicos([])
+                }
+                }).catch(function (error) {
+                    console.log(error)
+                });
+
             } catch (error) {
                 console.log(error);
             }
+            fetchData();
         }
-        fetchData();
     }
 
     useEffect(() => {
@@ -62,12 +69,12 @@ const ListagemServicos = () => {
                 <div className='container'>
 
                     <div className='col-md mb-3'>
-                        <div className='card'>
-                            <div className='card-body'>
+                        <div className='card    '>
+                            <div className='card-body '>
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name="pesquisa"
+                                        <input type="text" name="pesquisaServico"
                                             className='form-control'
                                             onChange={handleState} />
                                     </div>
@@ -90,9 +97,9 @@ const ListagemServicos = () => {
                                         <tr>
                                             <th>ID</th>
                                             <th>Nome</th>
-                                            <th>descrição</th>
-                                            <th>duraçao</th>
-                                            <th>preço</th>
+                                            <th>Descrição</th>
+                                            <th>Duraçao</th>
+                                            <th>Preço</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -101,8 +108,8 @@ const ListagemServicos = () => {
                                                 <td>{servicos.id}</td>
                                                 <td>{servicos.nome}</td>
                                                 <td>{servicos.descricao}</td>
-                                                <td>{servicos.duracao}</td>
-                                                <td>{servicos.preco}</td>
+                                                <td>{servicos.duracao}r</td>
+                                                <td>{servicos.preco}r</td>
                                                
 
                                                 <td>
@@ -121,4 +128,5 @@ const ListagemServicos = () => {
         </div>
     );
 }
+
 export default ListagemServicos;

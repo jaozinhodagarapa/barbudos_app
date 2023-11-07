@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
+import { Link } from "react-router-dom";
 import styles from '../App.module.css';
 import { CadastroClienteInterface } from "../Interfaces/CadastroClienteInterface";
 
@@ -13,7 +14,7 @@ const ListagemClientes = () => {
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.name === "pesquisa") {
-            setPesquisa(e.target.name);
+            setPesquisa(e.target.value);
         }
     }
 
@@ -23,22 +24,32 @@ const ListagemClientes = () => {
         async function fetchData() {
             try {
                 const response = await axios.post('http://127.0.0.1:8000/api/nome',
-                    { nome: pesquisa },
+                    { nome: pesquisa, email: pesquisa  },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
-                    }).then(function (response) {
-                        setClientes(response.data.data);
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
+                    }
+                
+                ).then(function (response) {
+                    if (true === response.data.status) {
+                        console.log(response.data.status)
+                        setClientes(response.data.data)
+                    }else setClientes([])
+                }).catch(function (error) {
+                    console.log(error)
+                });
+                
+                
+
             } catch (error) {
                 console.log(error);
             }
-        }
+        }   
+        
         fetchData();
+        
     }
 
     useEffect(() => {
@@ -48,7 +59,7 @@ const ListagemClientes = () => {
                 console.log(response.data.data);
                 setClientes(response.data.data);
             } catch (error) {
-                setError("Ocrreu um erro");
+                setError("Ocorreu um erro");
                 console.log(error)
             }
         }
@@ -60,20 +71,20 @@ const ListagemClientes = () => {
         <div>
             <main className={styles.main}>
                 <div className='container'>
-
                     <div className='col-md mb-3'>
                         <div className='card'>
                             <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name="pesquisa"
-                                            className='form-control'
+                                        <input type="text" name='pesquisa' className='form-control'
                                             onChange={handleState} />
+
                                     </div>
                                     <div className='col-1'>
                                         <button type='submit' className='btn btn-success'>Pesquisar</button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -92,17 +103,7 @@ const ListagemClientes = () => {
                                             <th>Nome</th>
                                             <th>celular</th>
                                             <th>email</th>
-                                            <th>cpf</th>
-                                            <th>nascimento</th>
-                                            <th>cidade</th>
-                                            <th>estado</th>
-                                            <th>pais</th>
-                                            <th>rua</th>
-                                            <th>numero</th>
-                                            <th>bairro</th>
-                                            <th>cep</th>
-                                            <th>complemento</th>
-                                            <th>senha</th>
+                                            <th>cpf</th> 
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
@@ -114,19 +115,9 @@ const ListagemClientes = () => {
                                                 <td>{clientes.celular}</td>
                                                 <td>{clientes.email}</td>
                                                 <td>{clientes.cpf}</td>
-                                                <td>{clientes.nascimento}</td>
-                                                <td>{clientes.cidade}</td>
-                                                <td>{clientes.estado}</td>
-                                                <td>{clientes.pais}</td>
-                                                <td>{clientes.rua}</td>
-                                                <td>{clientes.numero}</td>
-                                                <td>{clientes.bairro}</td>
-                                                <td>{clientes.cep}</td>
-                                                <td>{clientes.complemento}</td>
-                                                <td>{clientes.password}</td>
 
                                                 <td>
-                                                    <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                <Link to={"/editar/"+ clientes.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
