@@ -70,7 +70,7 @@ const EditarCliente = () => {
     useEffect(() => {
          async function fetcData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId/"+parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId"+parametro.id);
                 setNome(response.data.data.nome);
                 setCelular(response.data.data.celular);
                 setEmail(response.data.data.email);
@@ -197,7 +197,7 @@ const EditarCliente = () => {
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="date" 
+                                    type="text" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 
