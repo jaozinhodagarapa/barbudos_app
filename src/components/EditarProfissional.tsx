@@ -1,4 +1,4 @@
-import React, { Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
+import React,{Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
 import styles from '../App.module.css';
 import Footer from "./Footer"
@@ -56,6 +56,12 @@ const CadastroProfssional = () => {
         }
         ).then(function(response){
             console.log(response.data)
+            if(response.data.success == true){
+            window.location.href = "/listagemProfissional"
+            }else{
+                console.log(response.data)
+                alert("ocorreu um erro no cadastro do profissional")
+            }
         }).catch(function(error){
             console.log(error)
         })
@@ -161,7 +167,7 @@ const CadastroProfssional = () => {
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="text" 
+                                    type="date" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 
@@ -257,8 +263,8 @@ const CadastroProfssional = () => {
                                     required 
                                     onChange={handleState}
                                     />                                    
-                                </div> 
-                                <div className='col-6 ' >
+                                </div>
+                                <div className='col-6'>
                                     <label htmlFor="password" className='from-label'>Senha</label>
                                     <input 
                                     type="password" 
@@ -270,7 +276,7 @@ const CadastroProfssional = () => {
                                 </div>
                                 
                                
-                                <div className='col-10'>
+                                <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sm'>Cadastrar</button>
                                 </div>
                             </form>

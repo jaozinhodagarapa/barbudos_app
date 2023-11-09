@@ -22,7 +22,7 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nomes',
+                const response = await axios.post('http://127.0.0.1:8000/api/noomes',
                     { nome: pesquisa },
                     {
                         headers: {

@@ -23,7 +23,7 @@ const ListagemClientes = () => {
 
         async function fetchData() {
             try {
-                const response = await axios.post('http://127.0.0.1:8000/api/nome',
+                const response = await axios.post('http://127.0.0.1:8000/api/noomes',
                     { nome: pesquisa, email: pesquisa  },
                     {
                         headers: {
@@ -55,7 +55,7 @@ const ListagemClientes = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudo');
+                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudus');
                 console.log(response.data.data);
                 setClientes(response.data.data);
             } catch (error) {
