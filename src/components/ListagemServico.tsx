@@ -22,6 +22,7 @@ const ListagemServicos = () => {
 
         async function fetchData() {
             try {
+                
                 const response = await axios.post('http://127.0.0.1:8000/api/noomes',
                     { nome: pesquisa },
                     {
@@ -31,20 +32,21 @@ const ListagemServicos = () => {
                         }
                     }
                 ).then(function (response) {
+                    console.log(response);
                     if (true === response.data.status) {
                         console.log(response.data.status)
                         setServicos(response.data.data)
                     } else {
-                    setServicos([])}
+                        setServicos([])
+                    }
                 }).catch(function (error) {
                     console.log(error)
                 });
-
             } catch (error) {
                 console.log(error);
             }
-            fetchData();
         }
+        fetchData();
     }
 
     useEffect(() => {
@@ -109,7 +111,7 @@ const ListagemServicos = () => {
                                                 <td>{servicos.descricao}</td>
                                                 <td>{servicos.duracao}</td>
                                                 <td>{servicos.preco}</td>
-                                               
+
 
                                                 <td>
                                                     <a href="#" className='btn btn-primary btn-sm'>Editar</a>
