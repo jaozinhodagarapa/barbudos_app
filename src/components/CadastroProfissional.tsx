@@ -56,6 +56,7 @@ const CadastroProfssional = () => {
         }
         ).then(function(response){
             console.log(response.data)
+            window.location.href = "/listagemProfissional" 
         }).catch(function(error){
             console.log(error)
         })
@@ -239,7 +240,7 @@ const CadastroProfssional = () => {
                                     />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="cep" className='from-label'>Salario</label>
+                                    <label htmlFor="salario" className='from-label'>Salario</label>
                                     <input 
                                     type="text" 
                                     name='salario' 

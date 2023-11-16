@@ -105,6 +105,9 @@ const EditarProfissional = () => {
         if(e.target.name === "cpf"){
             setCpf(e.target.value)
         }
+        if(e.target.name === "salario"){
+            setSalario(e.target.value)
+        }
         if(e.target.name === "nascimento"){
             setNascimento(e.target.value)
         }
@@ -188,20 +191,20 @@ const EditarProfissional = () => {
                                     />                                    
                                 </div>
                                 <div className='col-6'>
-                                    <label htmlFor="cpf" className='from-label'>Salario</label>
+                                    <label htmlFor="salario" className='from-label'>Salario</label>
                                     <input 
                                     type="text" 
                                     name='salario' 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    value={cpf}
+                                    value={salario}
                                     />                                    
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="date" 
+                                    type="text" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 

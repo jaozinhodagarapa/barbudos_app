@@ -2,6 +2,7 @@ import axios from "axios";
 import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
+import { Link } from "react-router-dom";
 import { isSetAccessorDeclaration } from "typescript";
 import styles from '../App.module.css';
 import { CadastroProfissionalInterface } from "../Interfaces/CadastroProfissionalInterface";
@@ -107,13 +108,14 @@ const ListagemProfissionais = () => {
                                         {profissionais.map(profissionais => (
                                             <tr key={profissionais.id}>
                                                 <td>{profissionais.id}</td>
-                                                <td>{profissionais.nome}</td>                                                <td>{profissionais.salario}</td>
+                                                <td>{profissionais.nome}</td>   
+                                                 <td>{profissionais.salario}</td>
                                                 <td>{profissionais.celular}</td>
                                                 <td>{profissionais.email}</td>
                                                 <td>{profissionais.cpf}</td>
 
                                                 <td>
-                                                    <a href="#" className='btn btn-primary btn-sm'>Editar</a>
+                                                <Link to={"/editarProfissional/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
