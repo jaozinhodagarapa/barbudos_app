@@ -57,9 +57,10 @@ const EditarProfissional = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            window.location.href = "/listagemProfissional";
+             window.location.href = "/listagemProfissional";
+            
         }).catch(function(error){
-            console.log('Ocorreu um erro ao atualizar');
+            console.log('Ocorreu um erroao atualizar');
         });
 
     }
@@ -105,9 +106,6 @@ const EditarProfissional = () => {
         if(e.target.name === "cpf"){
             setCpf(e.target.value)
         }
-        if(e.target.name === "salario"){
-            setSalario(e.target.value)
-        }
         if(e.target.name === "nascimento"){
             setNascimento(e.target.value)
         }
@@ -134,6 +132,9 @@ const EditarProfissional = () => {
         }
         if(e.target.name === "complemento"){
             setComplemento(e.target.value)
+        }
+        if (e.target.name === "salario") {
+            setSalario(e.target.value)
         }
     }
 

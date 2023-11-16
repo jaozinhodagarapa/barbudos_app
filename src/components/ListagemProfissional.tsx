@@ -115,7 +115,7 @@ const ListagemProfissionais = () => {
                                                 <td>{profissionais.cpf}</td>
 
                                                 <td>
-                                                <Link to={"/editarProfissional/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                  <Link to={"/editarProfissional/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>

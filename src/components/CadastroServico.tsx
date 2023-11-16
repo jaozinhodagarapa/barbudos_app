@@ -1,8 +1,8 @@
 import React,{Component, useState, ChangeEvent, FormEvent, useEffect} from "react";
 
 import styles from '../App.module.css';
-import Footer from "./Footer"
-import Header from "./Header"
+import FooterServico from "./FooterServico"
+import HeaderServicos from "./HeaderServico"
 import axios from "axios";
 
 
@@ -60,7 +60,7 @@ const CadastroServico = () => {
 
     return (
         <div>
-            <Header />
+            <HeaderServicos />
             <main className={styles.main}>
                 <div className="container">
                     <div className='card'>
@@ -118,7 +118,7 @@ const CadastroServico = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <FooterServico />
         </div>
     );
 }

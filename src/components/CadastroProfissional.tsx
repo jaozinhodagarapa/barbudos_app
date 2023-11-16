@@ -1,7 +1,7 @@
 import React, { Component, useState, ChangeEvent, FormEvent,useEffect} from 'react';
 
 import styles from '../App.module.css';
-import Footer from "./Footer"
+import FooterProfissional from "./FooterProfissional"
 import Header from "./Header"
 import axios from "axios";
 
@@ -279,7 +279,7 @@ const CadastroProfssional = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <FooterProfissional />
         </div>
     );
 }
