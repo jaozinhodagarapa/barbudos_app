@@ -4,28 +4,28 @@ import React, {
 } from "react";
 import { Link } from "react-router-dom";
 import styles from '../App.module.css';
-import { CadastroServicoInterface } from "../Interfaces/CadastroServicoInterface";
+import { CadastroAgendaInterface } from "../Interfaces/CadastroAgendaInterface";
+import { CadastroProfissionalInterface } from "../Interfaces/CadastroProfissionalInterface";
 
-const ListagemServicos = () => {
-    const [servicos, setServicos] = useState<CadastroServicoInterface[]>([]);
+const ListagemAgenda = () => {
+    const [agenda, setAgenda] = useState<CadastroAgendaInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisaServico") {
+        if (e.target.name === "pesquisaAgenda") {
             setPesquisa(e.target.value);
         }
     }
-
     const buscar = (e: FormEvent) => {
         e.preventDefault();
 
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/noomes',
-                    { nome: pesquisa},
+                const response = await axios.post('http://127.0.0.1:8000/api/agenda/pesquisaDataHora',
+                    {  dataHora: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
@@ -34,69 +34,71 @@ const ListagemServicos = () => {
                     }
 
                 ).then(function (response) {
+                    
                     console.log(response.data)
-                    if (true == response.data.status) {
+                    if (true === response.data.status) {
                         console.log(response.data)
-                        window.location.href = "/listagemServico";
-                        setServicos(response.data.data)
+                        setAgenda(response.data.data)
                     } else {
 
-                        setServicos([])
+                        setAgenda([])
                     }
                 }).catch(function (error) {
                     console.log(error)
                 });
+
+
+
             } catch (error) {
                 console.log(error);
             }
         }
 
         fetchData();
+
     }
     function handleDelete(id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/delete/' + id)
+            axios.delete('http://127.0.0.1:8000/api/agenda/delete/' + id)
                 .then(function (response) {
-                    window.location.href = "/listagem/servico/"
+                    window.location.href = "/listagem/agenda"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
     }
-    
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudos');
-                console.log(response.data.data);
-                setServicos(response.data.data);
+                const response = await axios.get('http://127.0.0.1:8000/api/agenda/retornaTodos');
+                console.log(response);
+                setAgenda(response.data.data);
             } catch (error) {
-                setError("Ocrreu um erro");
+                setError("Ocorreu um erro");
                 console.log(error)
             }
         }
 
         fetchData();
     }, []);
-
     return (
         <div>
             <main className={styles.main}>
                 <div className='container'>
-
                     <div className='col-md mb-3'>
-                        <div className='card    '>
-                            <div className='card-body '>
+                        <div className='card'>
+                            <div className='card-body'>
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name="pesquisaServico"
-                                            className='form-control'
+                                        <input type="text" name='pesquisaAgenda' className='form-control'
                                             onChange={handleState} />
+
                                     </div>
                                     <div className='col-1'>
                                         <button type='submit' className='btn btn-success'>Pesquisar</button>
                                     </div>
+
                                 </form>
                             </div>
                         </div>
@@ -106,33 +108,34 @@ const ListagemServicos = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Seviços
+                                    Listagem das Agenda
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Nome</th>
-                                            <th>Descrição</th>
-                                            <th>Duraçao</th>
-                                            <th>Preço</th>
-                                            <th>Ações</th>
+                                            <th>profissional_Id</th>
+                                            <th>cliente_Id</th>
+                                            <th>servico_Id</th>
+                                            <th>dataHora</th>
+                                            <th>pagamento</th>
+                                            <th>valor</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {servicos.map(servicos => (
-                                            <tr key={servicos.id}>
-                                                <td>{servicos.id}</td>
-                                                <td>{servicos.nome}</td>
-                                                <td>{servicos.descricao}</td>
-                                                <td>{servicos.duracao}</td>
-                                                <td>{servicos.preco}</td>
-                                               
+                                        {agenda.map(agenda => (
+                                            <tr key={agenda.id}>
+                                                <td>{agenda.id}</td>
+                                                <td>{agenda.profissional_Id}</td>
+                                                <td>{agenda.cliente_Id}</td>
+                                                <td>{agenda.servico_Id}</td>
+                                                <td>{agenda.dataHora}</td>
+                                                <td>{agenda.pagamento}</td>
+                                                <td>{agenda.valor}</td>
 
                                                 <td>
-                                                <Link to={"/EditarServico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(servicos.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                    <button type="button" className="btn btn-secondary btn-sm">Redefinir Senha</button>
+                                                <Link to={"/editar/Agenda/"+ agenda.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <a onClick={e => handleDelete(agenda.id)} className='btn btn-danger btn-sm'>Excluir</a>
                                                 </td>
                                             </tr>
                                         ))}
@@ -146,4 +149,4 @@ const ListagemServicos = () => {
         </div>
     );
 }
-export default ListagemServicos;
+export default ListagemAgenda;

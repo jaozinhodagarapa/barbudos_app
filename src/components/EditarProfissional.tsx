@@ -24,6 +24,7 @@ const EditarProfissional = () => {
     const [cep,setCep] = useState<string>("");
     const [complemento,setComplemento] = useState<string>("");
     const [salario,setSalario] = useState<string>("");
+    const [password,setPassword] = useState<string>("");
     const [id, setId] = useState<string>();
 
     const parametro = useParams();
@@ -48,6 +49,7 @@ const EditarProfissional = () => {
             cep: cep,
             complemento: complemento,
             salario: salario,
+            password: password,
         }
         axios.put("http://127.0.0.1:8000/api/updateProfissional",
         dados,
@@ -58,7 +60,7 @@ const EditarProfissional = () => {
             }
         }).then(function(response){
             console.log(response)
-            // window.location.href = "/listagemProfissional";
+            //window.location.href = "/listagemProfissional";
             
         }).catch(function(error){
             console.log('Ocorreu um erroao atualizar');
@@ -84,6 +86,7 @@ const EditarProfissional = () => {
                 setCep(response.data.data.cep);
                 setComplemento(response.data.data.complemento);
                 setSalario(response.data.data.salario);
+                setPassword(response.data.data.password);
                 setId(response.data.data.id);
                 console.log(response)
             } catch(error){
@@ -136,6 +139,9 @@ const EditarProfissional = () => {
         }
         if (e.target.name === "salario") {
             setSalario(e.target.value)
+        }
+        if (e.target.name === "password") {
+            setPassword(e.target.value)
         }
     }
 
@@ -300,6 +306,17 @@ const EditarProfissional = () => {
                                     required 
                                     onChange={handleState}
                                     value={complemento }
+                                    />                                    
+                                </div>
+                                <div className='col-6'>
+                                    <label htmlFor="password" className='from-label'>Senha</label>
+                                    <input 
+                                    type="text" 
+                                    name='password' 
+                                    className='form-control'
+                                    required 
+                                    onChange={handleState}
+                                    value={password}
                                     />                                    
                                 </div>
                                 <div className='col-12'>

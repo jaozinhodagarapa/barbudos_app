@@ -17,6 +17,30 @@ const ListagemClientes = () => {
             setPesquisa(e.target.value);
         }
     }
+    function handleDelete(id: number) {
+        const confirm = window.confirm('Deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/excluir/cliente/2' + id)
+                .then(function (response) {
+                    window.location.href = "/Listagem"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
+    }
+
+    function RedefinirSenha(id: number) {
+        const confirm = window.confirm('Deseja redefinir a senha?');
+        if (confirm)
+        axios.put('http://127.0.0.1:8000/api/cliente/esqueciSenha' + id)
+            .then(function (response) {
+               
+            }).catch(function (error) {
+                console.log('Ocorreu um erro ao alterar a senha');
+            })
+    }
+
+     
+
 
     const buscar = (e: FormEvent) => {
         e.preventDefault();
@@ -117,8 +141,9 @@ const ListagemClientes = () => {
                                                 <td>{clientes.cpf}</td>
 
                                                 <td>
-                                                <Link to={"/editar/"+ clientes.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                    <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                                <Link to={"/EditarCliente"+ clientes.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                    <a onClick={e => handleDelete(clientes.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                    <a onClick={e => RedefinirSenha(clientes.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
                                                 </td>
                                             </tr>
                                         ))}

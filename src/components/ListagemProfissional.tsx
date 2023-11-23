@@ -3,18 +3,17 @@ import React, {
     Component, useState, ChangeEvent, FormEvent, useEffect
 } from "react";
 import { Link } from "react-router-dom";
-import { isSetAccessorDeclaration } from "typescript";
 import styles from '../App.module.css';
 import { CadastroProfissionalInterface } from "../Interfaces/CadastroProfissionalInterface";
 
 const ListagemProfissionais = () => {
-    const [profissionais, setProfissionais] = useState<CadastroProfissionalInterface[]>([]);
+    const [profissional, setProfissional] = useState<CadastroProfissionalInterface[]>([]);
     const [pesquisa, setPesquisa] = useState<string>("")
     const [error, setError] = useState("");
 
 
     const handleState = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.name === "pesquisa") {
+        if (e.target.name === "pesquisaProfissional") {
             setPesquisa(e.target.value);
         }
     }
@@ -24,36 +23,56 @@ const ListagemProfissionais = () => {
 
         async function fetchData() {
             try {
+                console.log(pesquisa);
                 const response = await axios.post('http://127.0.0.1:8000/api/nomess',
-                    { nome: pesquisa },
+                    { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
                             "Accept": "application/json",
                             "Content-Type": "application/json"
                         }
                     }
+
                 ).then(function (response) {
+                    
+                    console.log(response.data)
                     if (true === response.data.status) {
-                        console.log(response.data.status)
-                        setProfissionais(response.data.data)
-                    }else setProfissionais([])
+                        console.log(response.data)
+                        setProfissional(response.data.data)
+                    } else {
+
+                        setProfissional([])
+                    }
                 }).catch(function (error) {
                     console.log(error)
                 });
 
+
+
             } catch (error) {
                 console.log(error);
             }
-        }   
-        fetchData();
-    }
+        }
 
+        fetchData();
+
+    }
+    function handleDelete(id: number) {
+        const confirm = window.confirm('Você tem certeza que deseja excluir?');
+        if (confirm)
+            axios.delete('http://127.0.0.1:8000/api/excluir/' + id)
+                .then(function (response) {
+                    window.location.href = "/listagem/Profissional"
+                }).catch(function (error) {
+                    console.log('Ocorreu um erro ao excluir');
+                })
+    }
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/retornarTodos');
-                console.log(response.data.data);
-                setProfissionais(response.data.data);
+                console.log(response);
+                setProfissional(response.data.data);
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error)
@@ -73,7 +92,7 @@ const ListagemProfissionais = () => {
                                 <h5 className='card-title'>Pesquisar</h5>
                                 <form onSubmit={buscar} className='row'>
                                     <div className='col-10'>
-                                        <input type="text" name='pesquisa' className='form-control'
+                                        <input type="text" name='pesquisaProfissional' className='form-control'
                                             onChange={handleState} />
 
                                     </div>
@@ -100,23 +119,24 @@ const ListagemProfissionais = () => {
                                             <th>salario</th>
                                             <th>celular</th>
                                             <th>E-mail</th>
-                                            <th>Cpf</th> 
-                                            <th>Ações</th>
+                                            <th>Cpf</th>
+                                            <th>Ações</th> 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {profissionais.map(profissionais => (
-                                            <tr key={profissionais.id}>
-                                                <td>{profissionais.id}</td>
-                                                <td>{profissionais.nome}</td>   
-                                                 <td>{profissionais.salario}</td>
-                                                <td>{profissionais.celular}</td>
-                                                <td>{profissionais.email}</td>
-                                                <td>{profissionais.cpf}</td>
+                                        {profissional.map(profissional => (
+                                            <tr key={profissional.id}>
+                                                <td>{profissional.id}</td>
+                                                <td>{profissional.nome}</td>
+                                                <td>{profissional.salario}</td>
+                                                <td>{profissional.celular}</td>
+                                                <td>{profissional.email}</td>
+                                                <td>{profissional.cpf}</td>
 
                                                 <td>
-                                  <Link to={"/editarProfissional/"+ profissionais.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                    <a href="#" className='btn btn-danger btn-sm'>Excluir</a>
+                                                <Link to={"/EditarProfissional"+ profissional.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <a onClick={e => handleDelete(profissional.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                   
                                                 </td>
                                             </tr>
                                         ))}
