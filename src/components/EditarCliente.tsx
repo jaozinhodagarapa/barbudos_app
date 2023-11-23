@@ -51,7 +51,7 @@ const EditarCliente = () => {
             complemento: complemento,
             password: password
         }
-        axios.put("http://127.0.0.1:8000/api/updatee",
+        axios.put("http://127.0.0.1:8000/api/cliente/update",
         dados,
         {
             headers: {
@@ -70,7 +70,7 @@ const EditarCliente = () => {
     useEffect(() => {
          async function fetcData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/pesquisaPorId/"+parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/cliente/pesquisaPorId/"+parametro.id);
                 setNome(response.data.data.nome);
                 setCelular(response.data.data.celular);
                 setEmail(response.data.data.email);

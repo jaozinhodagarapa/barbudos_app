@@ -24,7 +24,7 @@ const ListagemProfissionais = () => {
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/nomess',
+                const response = await axios.post('http://127.0.0.1:8000/api/profissional/pesquisanome',
                     { nome: pesquisa, email: pesquisa },
                     {
                         headers: {
@@ -60,17 +60,28 @@ const ListagemProfissionais = () => {
     function handleDelete(id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/excluir/' + id)
+            axios.delete('http://127.0.0.1:8000/api/profissional/excluir/' + id)
                 .then(function (response) {
                     window.location.href = "/listagem/Profissional"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
     }
+    
+    function RedefinirSenha(id: number) {
+        const confirm = window.confirm('Deseja redefinir a senha?');
+        if (confirm)
+        axios.put('http://127.0.0.1:8000/api/profissional/esqueciSenha' + id)
+            .then(function (response) {
+               
+            }).catch(function (error) {
+                console.log('Ocorreu um erro ao alterar a senha');
+            })
+    }
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTodos');
+                const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
                 console.log(response);
                 setProfissional(response.data.data);
             } catch (error) {
@@ -134,9 +145,9 @@ const ListagemProfissionais = () => {
                                                 <td>{profissional.cpf}</td>
 
                                                 <td>
-                                                <Link to={"/EditarProfissional"+ profissional.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <Link to={"/profissional/editar/"+ profissional.id}  className='btn btn-primary btn-sm' >Editar</Link>
                                                 <a onClick={e => handleDelete(profissional.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                   
+                                                <a onClick={e => RedefinirSenha(profissional.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
                                                 </td>
                                             </tr>
                                         ))}

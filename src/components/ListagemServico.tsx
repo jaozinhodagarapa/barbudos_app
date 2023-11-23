@@ -24,7 +24,7 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/noomes',
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/pesquisaNome',
                     { nome: pesquisa},
                     {
                         headers: {
@@ -56,7 +56,7 @@ const ListagemServicos = () => {
     function handleDelete(id: number) {
         const confirm = window.confirm('Você tem certeza que deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/delete/' + id)
+            axios.delete('http://127.0.0.1:8000/api/servico/delete/' + id)
                 .then(function (response) {
                     window.location.href = "/listagem/servico/"
                 }).catch(function (error) {
@@ -64,10 +64,11 @@ const ListagemServicos = () => {
                 })
     }
     
+    
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/retornarTudos');
+                const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos');
                 console.log(response.data.data);
                 setServicos(response.data.data);
             } catch (error) {
