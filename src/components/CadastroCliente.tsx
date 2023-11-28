@@ -54,7 +54,7 @@ const CadastroCliente = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagem"  
+            window.location.href = "/cliente/listagem"  
         }).catch(function(error){
             console.log(error)
         })
@@ -157,7 +157,7 @@ const CadastroCliente = () => {
                                 <div className='col-4'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="text" 
+                                    type="date" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 

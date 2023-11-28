@@ -24,7 +24,7 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 console.log(pesquisa);
-                const response = await axios.post('http://127.0.0.1:8000/api/servico/pesquisaNome',
+                const response = await axios.post('http://127.0.0.1:8000/api/servico/pesquisa/Nome',
                     { nome: pesquisa},
                     {
                         headers: {
@@ -36,8 +36,7 @@ const ListagemServicos = () => {
                 ).then(function (response) {
                     console.log(response.data)
                     if (true == response.data.status) {
-                        console.log(response.data)
-                        window.location.href = "/listagemServico";
+                        
                         setServicos(response.data.data)
                     } else {
 

@@ -60,7 +60,7 @@ const EditarCliente = () => {
             }
         }).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagem"
+            window.location.href = "/cliente/listagem"
         }).catch(function(error){
             console.log('Ocorreu um erro ao atualizar');
         });
@@ -89,7 +89,7 @@ const EditarCliente = () => {
                 setId(response.data.data.id);
                 console.log(response)
             } catch(error){
-                console.log("error ao buscar dados da api");
+                console.log("Erro ao buscar dados da api");
             }
          }
          fetcData();
@@ -197,7 +197,7 @@ const EditarCliente = () => {
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="text" 
+                                    type="date" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 

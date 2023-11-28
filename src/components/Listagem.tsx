@@ -20,7 +20,7 @@ const ListagemClientes = () => {
     function handleDelete(id: number) {
         const confirm = window.confirm('Deseja excluir?');
         if (confirm)
-            axios.delete('http://127.0.0.1:8000/api/cliente/excluir' + id)
+            axios.delete('http://127.0.0.1:8000/api/cliente/excluir/' + id)
                 .then(function (response) {
                     window.location.href = "/cliente/listagem"
                 }).catch(function (error) {

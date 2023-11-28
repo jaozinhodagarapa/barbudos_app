@@ -56,7 +56,7 @@ const CadastroProfssional = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagemProfissional" 
+            window.location.href = "/profissional/listagem" 
         }).catch(function(error){
             console.log(error)
         })
@@ -162,7 +162,7 @@ const CadastroProfssional = () => {
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
                                     <input 
-                                    type="text" 
+                                    type="date" 
                                     name='nascimento' 
                                     className='form-control'
                                     required 

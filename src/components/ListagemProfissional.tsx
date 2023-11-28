@@ -62,7 +62,7 @@ const ListagemProfissionais = () => {
         if (confirm)
             axios.delete('http://127.0.0.1:8000/api/profissional/excluir/' + id)
                 .then(function (response) {
-                    window.location.href = "/listagem/Profissional"
+                    window.location.href = "/profissional/listagem"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
@@ -71,7 +71,7 @@ const ListagemProfissionais = () => {
     function RedefinirSenha(id: number) {
         const confirm = window.confirm('Deseja redefinir a senha?');
         if (confirm)
-        axios.put('http://127.0.0.1:8000/api/profissional/esqueciSenha' + id)
+        axios.put('http://127.0.0.1:8000/api/profissional/esqueciSenha/' + id)
             .then(function (response) {
                
             }).catch(function (error) {
@@ -146,7 +146,9 @@ const ListagemProfissionais = () => {
 
                                                 <td>
                                                 <Link to={"/profissional/editar/"+ profissional.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(profissional.id)} className='btn btn-danger btn-sm'>Excluir</a>
+                                                <a onClick={e => handleDelete(profissional.id)} className='btn m-1 btn-danger btn-sm'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 16 16">
+  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+</svg></a>
                                                 <a onClick={e => RedefinirSenha(profissional.id)} className='btn btn-secondary btn-sm'>Redefinir Senha</a>
                                                 </td>
                                             </tr>
