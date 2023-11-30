@@ -36,7 +36,7 @@ const CadastroServico = () => {
         }
         ).then(function(response){
             console.log(response.data)
-            window.location.href = "/listagemServico"
+            window.location.href = "/servico/listagem"
         }).catch(function(error){
             console.log(error)
         })

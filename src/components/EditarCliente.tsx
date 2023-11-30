@@ -26,10 +26,39 @@ const EditarCliente = () => {
     const [localidade, setLocalidade] = useState<string>("");
     const [password, setPassword] = useState<string>("")
     const [id, setId] = useState<string>();
+    const [nomeErro, setNomeErro] = useState<string>("");
+    const [celularErro,setCelularErro] = useState<string>("");
+    const [emailErro,setEmailErro] = useState<string>("");
+    const [cpfErro,setCpfErro] = useState<string>("");
+    const [nascimentoErro,setNascimentoErro] = useState<string>("");
+    const [cidadeErro,setCidadeErro] = useState<string>("");
+    const [estadoErro,setEstadoErro] = useState<string>("");
+    const [paisErro,setPaisErro] = useState<string>("");
+    const [ruaErro,setRuaErro] = useState<string>("");
+    const [numeroErro,setNumeroErro] = useState<string>("");
+    const [bairroErro,setBairroErro] = useState<string>("");
+    const [cepErro,setCepErro] = useState<string>("");
+    const [complementoErro,setComplementoErro] = useState<string>("");
+    const [passwordErro,setPasswordErro] = useState<string>("")
 
     const parametro = useParams();
 
     const atualizar = (e: FormEvent) => {
+        setNomeErro("")
+        setCelularErro("")
+        setEmailErro("")
+        setCpfErro("")
+        setNascimentoErro("")
+        setCidadeErro("")
+        setEstadoErro("")
+        setPaisErro("")
+        setRuaErro("")
+        setNumeroErro("")
+        setBairroErro("")
+        setCepErro("")
+        setComplementoErro("")
+        setPasswordErro("")
+
 
         e.preventDefault();
 
@@ -59,11 +88,56 @@ const EditarCliente = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
-            console.log(response.data)
+            if (response.data.success === false) {
+                if ('nome' in response.data.error) {
+                    setNomeErro(response.data.error.nome[0])
+                }
+                if ('celular' in response.data.error) {
+                    setCelularErro(response.data.error.celular[0])
+                }
+                if ('email' in response.data.error) {
+                    setEmailErro(response.data.error.email[0])
+                }
+                if ('cpf' in response.data.error) {
+                    setCpfErro(response.data.error.cpf[0])
+                }
+                if ('nascimento' in response.data.error) {
+                    setNascimentoErro(response.data.error.nascimento[0])
+                }
+                if ('cidade' in response.data.error) {
+                    setCidadeErro(response.data.error.cidade[0])
+                }
+                if ('estado' in response.data.error) {
+                    setEstadoErro(response.data.error.estado[0])
+                }
+                if ('pais' in response.data.error) {
+                    setPaisErro(response.data.error.pais[0])
+                }
+                if ('rua' in response.data.error) {
+                    setRuaErro(response.data.error.rua[0])
+                }
+                if ('numero' in response.data.error) {
+                    setNumeroErro(response.data.error.numero[0])
+                }
+                if ('bairro' in response.data.error) {
+                    setBairroErro(response.data.error.bairro[0])
+                }
+                if ('cep' in response.data.error) {
+                    setCepErro(response.data.error.cep[0])
+                }
+                if ('complemento' in response.data.error) {
+                    setComplementoErro(response.data.error.complemento[0])
+                }
+                if ('password' in response.data.error) {
+                    setPasswordErro(response.data.error.password[0])
+                }
+            } else {
             window.location.href = "/cliente/listagem"
+            }
         }).catch(function(error){
             console.log('Ocorreu um erro ao atualizar');
         });
+
 
     }
 

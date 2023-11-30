@@ -40,7 +40,7 @@ const ListagemServicos = () => {
                         setServicos(response.data.data)
                     } else {
 
-                        setServicos([])
+                        console.log("erro")
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -57,7 +57,7 @@ const ListagemServicos = () => {
         if (confirm)
             axios.delete('http://127.0.0.1:8000/api/servico/delete/' + id)
                 .then(function (response) {
-                    window.location.href = "/listagem/servico/"
+                    window.location.href = "/servico/listagem"
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
@@ -68,8 +68,15 @@ const ListagemServicos = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/servico/retornarTodos');
+                if(response.data.status === true){
+                    setServicos(response.data.data);
+                }
+                else{
+                    console.log("Erro");
+                    
+                }
                 console.log(response.data.data);
-                setServicos(response.data.data);
+               
             } catch (error) {
                 setError("Ocrreu um erro");
                 console.log(error)
@@ -130,9 +137,10 @@ const ListagemServicos = () => {
                                                
 
                                                 <td>
-                                                <Link to={"/EditarServico/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
-                                                <a onClick={e => handleDelete(servicos.id)} className='btn btn-danger btn-sm'>Excluir</a>
-                                                    <button type="button" className="btn btn-secondary btn-sm">Redefinir Senha</button>
+                                                <Link to={"/servico/editar/"+ servicos.id}  className='btn btn-primary btn-sm' >Editar</Link>
+                                                <a onClick={e => handleDelete(servicos.id)} className='btn m-1 btn-danger btn-sm'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-trash3-fill" viewBox="0 0 16 16">
+  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+</svg></a>
                                                 </td>
                                             </tr>
                                         ))}

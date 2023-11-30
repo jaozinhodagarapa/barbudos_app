@@ -26,13 +26,13 @@ const AppRouter = () => {
 
             <Route path="/servico/cadastro" element={<CadastroServico/>}/>
             <Route path="/servico/listagem" element={<ListagemServicos/>}/>
-            <Route path="/servico/editarServico/:id" element={<EditarServico/>}/>
+            <Route path="/servico/editar/:id" element={<EditarServico/>}/>
 
             <Route path="profissional/cadastro" element={<CadastroProfssional/>}/>
             <Route path="/profissional/listagem" element={<ListagemProfissionais/>}/>
             <Route path="/profissional/editar/:id" element={<EditarProfissional/>}/>
 
-            <Route path="listagemAgenda" element={<ListagemAgenda/>}/>
+            <Route path="agenda/listagem" element={<ListagemAgenda/>}/>
 
             
 
