@@ -15,10 +15,18 @@ const EditarServico = () => {
     const [duracao, setDuracao] = useState<string>("");
     const [preco, setPreco] = useState<string>("");
     const [id, setId] = useState<string>();
+    const [nomeErro, setErroNome] = useState<string>("");
+    const [descricaoErro,setDescricaoErro] = useState<string>("");
+    const [duracaoErro,setDuracaoErro] = useState<string>("");
+    const [precoErro,setPrecoErro] = useState<string>("");
 
     const parametro = useParams();
 
     const atualizar = (e: FormEvent) => {
+        setErroNome("")
+        setDescricaoErro("")
+        setDuracaoErro("")
+        setPrecoErro("")
 
         e.preventDefault();
 
@@ -97,7 +105,8 @@ const EditarServico = () => {
                                     required 
                                     onChange={handleState}
                                     value={nome}
-                                    />                                    
+                                    /> 
+                                      <div className='text-danger'>{nomeErro}</div>                                         
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="celular" className='from-label'>descrição</label>
@@ -108,7 +117,8 @@ const EditarServico = () => {
                                     required 
                                     onChange={handleState}
                                     value={descricao}
-                                    />                                    
+                                    />  
+                                      <div className='text-danger'>{descricaoErro}</div>                                        
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="duracao" className='from-label'>duração</label>
@@ -119,7 +129,8 @@ const EditarServico = () => {
                                     required 
                                     onChange={handleState}
                                     value={duracao}
-                                    />                                    
+                                    /> 
+                                      <div className='text-danger'>{duracaoErro}</div>                                         
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="preco" className='from-label'>preço</label>
@@ -130,7 +141,8 @@ const EditarServico = () => {
                                     required 
                                     onChange={handleState}
                                     value={preco}
-                                    />                                    
+                                    />  
+                                      <div className='text-danger'>{precoErro}</div>                                        
                                 </div>
                                 <div className='col-12'>
                                     <button type='submit' className='btn btn-success btn-sm'>Atualizar</button>

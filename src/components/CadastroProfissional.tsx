@@ -51,7 +51,7 @@ const CadastroProfssional = () => {
         setBairroErro("")
         setCepErro("")
         setComplementoErro("")
-        setSalarioErro
+        setSalarioErro("")
         setPasswordErro("")
         e.preventDefault();
 
@@ -203,7 +203,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />             
+                                     <div className='text-danger'>{nomeErro}</div>                        
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="celular" className='from-label'>Celular</label>
@@ -213,7 +214,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{celularErro}</div>                                   
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="email" className='from-label'>E-mail</label>
@@ -223,7 +225,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />          
+                                     <div className='text-danger'>{emailErro}</div>                           
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cpf" className='from-label'>CPF</label>
@@ -233,7 +236,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    /> 
+                                     <div className='text-danger'>{cpfErro}</div>                                    
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
@@ -243,7 +247,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />                  
+                                     <div className='text-danger'>{nascimentoErro}</div>                   
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cidade" className='from-label'>Cidade</label>
@@ -253,7 +258,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />     
+                                     <div className='text-danger'>{cidadeErro}</div>                                
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="estado" className='from-label'>Estado</label>
@@ -263,7 +269,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />        
+                                     <div className='text-danger'>{estadoErro}</div>                             
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="pais" className='from-label'>Pais</label>
@@ -273,7 +280,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />   
+                                     <div className='text-danger'>{paisErro}</div>                                  
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="rua" className='from-label'>Rua</label>
@@ -284,6 +292,7 @@ const CadastroProfssional = () => {
                                     required 
                                     onChange={handleState}
                                     />                                    
+                                     <div className='text-danger'>{ruaErro}</div> 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="numero" className='from-label'>Numero</label>
@@ -293,7 +302,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{numeroErro}</div>                                   
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="bairro" className='from-label'>Bairro</label>
@@ -303,7 +313,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />    
+                                     <div className='text-danger'>{bairroErro}</div>                                 
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cep" className='from-label'>CEP</label>
@@ -313,7 +324,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{cepErro}</div>                                   
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="salario" className='from-label'>Salario</label>
@@ -323,7 +335,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />         
+                                     <div className='text-danger'>{SalarioErro}</div>                            
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>
@@ -333,7 +346,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    /> 
+                                     <div className='text-danger'>{complementoErro}</div>                                    
                                 </div> 
                                 <div className='col-6 ' >
                                     <label htmlFor="password" className='from-label'>Senha</label>
@@ -343,7 +357,8 @@ const CadastroProfssional = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{passwordErro}</div>                                   
                                 </div>
                                 
                                

@@ -79,7 +79,7 @@ const ListagemAgenda = () => {
                     
                 }
                 console.log(response);
-                setAgenda(response.data.data);
+               
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error)

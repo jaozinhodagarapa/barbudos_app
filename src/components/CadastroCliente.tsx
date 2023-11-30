@@ -197,7 +197,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />     
+                                     <div className='text-danger'>{nomeErro}</div>                                
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="celular" className='from-label'>Celular</label>
@@ -207,7 +208,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />        
+                                     <div className='text-danger'>{celularErro}</div>                             
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="email" className='from-label'>Email</label>
@@ -217,7 +219,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />      
+                                     <div className='text-danger'>{emailErro}</div>                               
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="cpf" className='from-label'>CPF</label>
@@ -227,7 +230,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{cpfErro}</div>                                   
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="nascimento" className='from-label'>Nascimento</label>
@@ -237,7 +241,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />  
+                                     <div className='text-danger'>{nascimentoErro}</div>                                   
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="cidade" className='from-label'>Cep</label>
@@ -247,7 +252,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />             
+                                     <div className='text-danger'>{cepErro}</div>                        
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="estado" className='from-label'>Estado</label>
@@ -257,7 +263,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />     
+                                     <div className='text-danger'>{estadoErro}</div>                                
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="pais" className='from-label'>País</label>
@@ -267,7 +274,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />
+                                     <div className='text-danger'>{paisErro}</div>                                     
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="rua" className='from-label'>Rua</label>
@@ -277,7 +285,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />            
+                                     <div className='text-danger'>{ruaErro}</div>                         
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="numero" className='from-label'>Numero</label>
@@ -287,7 +296,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />      
+                                     <div className='text-danger'>{numeroErro}</div>                               
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="bairro" className='from-label'>Bairro</label>
@@ -297,7 +307,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />        
+                                     <div className='text-danger'>{bairroErro}</div>                             
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="cep" className='from-label'>Cidade</label>
@@ -307,7 +318,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />   
+                                     <div className='text-danger'>{cidadeErro}</div>                                  
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>
@@ -317,7 +329,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />     
+                                     <div className='text-danger'>{complementoErro}</div>                                
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="password" className='from-label'>Senha</label>
@@ -327,7 +340,8 @@ const CadastroCliente = () => {
                                     className='form-control'
                                     required 
                                     onChange={handleState}
-                                    />                                    
+                                    />     
+                                     <div className='text-danger'>{passwordErro}</div>                                
                                 </div>
                                 
                                

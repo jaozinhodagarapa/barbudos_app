@@ -82,6 +82,7 @@ const ListagemProfissionais = () => {
         async function fetchData() {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/api/profissional/retornarTodos');
+                console.log(response.data.status)
                 if(response.data.status === true){
                     setProfissional(response.data.data);
                 }
@@ -90,7 +91,7 @@ const ListagemProfissionais = () => {
                     
                 }
                 console.log(response);
-                setProfissional(response.data.data);
+                
             } catch (error) {
                 setError("Ocorreu um erro");
                 console.log(error)
