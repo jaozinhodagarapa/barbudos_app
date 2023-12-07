@@ -125,7 +125,7 @@ const ListagemClientes = () => {
                         <div className='card'>
                             <div className='card-body '>
                                 <h5 className='card-title'>
-                                    Listagem de Usuários
+                                    Listagem de Clientes
                                 </h5>
                                 <table className='table table-hover '>
                                     <thead>

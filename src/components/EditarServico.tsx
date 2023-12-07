@@ -46,6 +46,21 @@ const EditarServico = () => {
                 "Content-Type": "application/json"
             }
         }).then(function(response){
+            if (response.data.success === false) {
+                if ('nome' in response.data.error) {
+                    setErroNome(response.data.error.nome[0])
+                }
+                if ('descricao' in response.data.error) {
+                    setDescricaoErro(response.data.error.descricao[0])
+                }
+                if ('duracao' in response.data.error) {
+                    setDuracaoErro(response.data.error.duracao[0])
+                }
+                if ('preco' in response.data.error) {
+                    setPrecoErro(response.data.error.preco[0])
+                }
+            }
+            
             window.location.href = "/servico/listagem";
         }).catch(function(error){
             console.log('Ocorreu um erro ao atualizar');

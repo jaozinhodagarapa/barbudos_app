@@ -22,7 +22,9 @@ const CadastroProfssional = () => {
     const [complemento,setComplemento] = useState<string>("");
     const [salario,setSalario] = useState<string>("");
     const [password,setPassword] = useState<string>("");
+    const [localidade, setLocalidade] = useState<string>("");
     const [nomeErro, setNomeErro] = useState<string>("");
+    const [Erro, setErro] = useState<string>("");
     const [celularErro,setCelularErro] = useState<string>("");
     const [emailErro,setEmailErro] = useState<string>("");
     const [cpfErro,setCpfErro] = useState<string>("");
@@ -136,6 +138,28 @@ const CadastroProfssional = () => {
         }).catch(function (error) {
             console.log(error)
         })
+    }
+    const findCep = (e: FormEvent) => {
+
+        e.preventDefault();
+
+        fetch('https://viacep.com.br/ws/' + cep + '/json',
+            {
+                method: 'GET'
+            }).then(response => response.json())
+            .then(
+                data => {
+                    setCidade(data.localidade);
+                    setPais(data.pais)
+                    setEstado(data.uf);
+                    setBairro(data.bairro)
+                    setErro("")
+                }
+            ).catch(error => {
+                setErro("Pesquisa Inválida");
+            });
+
+        console.log("Localidade:" + localidade);
     }
 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{

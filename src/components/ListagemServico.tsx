@@ -40,7 +40,7 @@ const ListagemServicos = () => {
                         setServicos(response.data.data)
                     } else {
 
-                        console.log("erro")
+                        setServicos([])
                     }
                 }).catch(function (error) {
                     console.log(error)
@@ -72,7 +72,7 @@ const ListagemServicos = () => {
                     setServicos(response.data.data);
                 }
                 else{
-                    console.log("Erro");
+                    setServicos([]);
                     
                 }
                 console.log(response.data.data);

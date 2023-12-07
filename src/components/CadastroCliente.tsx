@@ -21,6 +21,7 @@ const CadastroCliente = () => {
     const [cep,setCep] = useState<string>("");
     const [complemento,setComplemento] = useState<string>("");
     const [password,setPassword] = useState<string>("");
+    const [localidade, setLocalidade] = useState<string>("");
     const [uf, setUf] = useState<string>("");
     const [erro, setErro] = useState<string>("");
     const [nomeErro, setNomeErro] = useState<string>("");
@@ -133,6 +134,28 @@ const CadastroCliente = () => {
         }).catch(function (error) {
             console.log(error)
         })
+    }
+    const findCep = (e: FormEvent) => {
+
+        e.preventDefault();
+
+        fetch('https://viacep.com.br/ws/' + cep + '/json',
+            {
+                method: 'GET'
+            }).then(response => response.json())
+            .then(
+                data => {
+                    setCidade(data.localidade);
+                    setPais(data.pais)
+                    setEstado(data.uf);
+                    setBairro(data.bairro)
+                    setErro("")
+                }
+            ).catch(error => {
+                setErro("Pesquisa Inválida");
+            });
+
+        console.log("Localidade:" + localidade);
     }
 
     const handleState = (e: ChangeEvent<HTMLInputElement>)=>{
@@ -247,8 +270,10 @@ const CadastroCliente = () => {
                                 <div className='col-4'>
                                     <label htmlFor="cidade" className='from-label'>Cep</label>
                                     <input 
+                                    onBlur={findCep}
                                     type="text" 
                                     name='cep' 
+
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -260,6 +285,7 @@ const CadastroCliente = () => {
                                     <input 
                                     type="text" 
                                     name='estado' 
+                                    value={estado}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -271,6 +297,7 @@ const CadastroCliente = () => {
                                     <input 
                                     type="text" 
                                     name='pais' 
+                                    value={pais}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -282,6 +309,7 @@ const CadastroCliente = () => {
                                     <input 
                                     type="text" 
                                     name='rua' 
+                                    value={rua}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -325,7 +353,8 @@ const CadastroCliente = () => {
                                     <label htmlFor="complemento" className='from-label'>Complemento</label>
                                     <input 
                                     type="text" 
-                                    name='complemento' 
+                                    name='complemento'
+                                    value={complemento} 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
