@@ -66,6 +66,7 @@ const ListagemProfissionais = () => {
                 }).catch(function (error) {
                     console.log('Ocorreu um erro ao excluir');
                 })
+                
     }
     
     function RedefinirSenha(id: number) {
