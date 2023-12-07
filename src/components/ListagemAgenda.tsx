@@ -123,6 +123,8 @@ const ListagemAgenda = () => {
                                             <th>ID</th>
                                             <th>profissional Id</th>
                                             <th>dataHora</th>
+                                            <th>Forma de Pagamento</th>
+                                            <th>Valor</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
