@@ -254,7 +254,8 @@ const CadastroProfssional = () => {
                                 </div>
                                 <div className='col-6'>
                                     <label htmlFor="cpf" className='from-label'>CPF</label>
-                                    <input 
+                                    <input
+                                   
                                     type="text" 
                                     name='cpf' 
                                     className='form-control'
@@ -279,6 +280,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='cidade' 
+                                    value={cidade}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -289,7 +291,8 @@ const CadastroProfssional = () => {
                                     <label htmlFor="estado" className='from-label'>Estado</label>
                                     <input 
                                     type="text" 
-                                    name='estado' 
+                                    name='estado'
+                                    value={estado} 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -301,6 +304,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='pais' 
+
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -312,6 +316,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='rua' 
+                                    value={rua}
                                     className='form-control'
                                     required 
                                     onChange={handleState}
@@ -343,6 +348,7 @@ const CadastroProfssional = () => {
                                 <div className='col-6'>
                                     <label htmlFor="cep" className='from-label'>CEP</label>
                                     <input 
+                                     onBlur={findCep} 
                                     type="text" 
                                     name='cep' 
                                     className='form-control'
@@ -367,6 +373,7 @@ const CadastroProfssional = () => {
                                     <input 
                                     type="text" 
                                     name='complemento' 
+                                    value={complemento}
                                     className='form-control'
                                     required 
                                     onChange={handleState}

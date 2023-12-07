@@ -342,7 +342,8 @@ const CadastroCliente = () => {
                                     <label htmlFor="cep" className='from-label'>Cidade</label>
                                     <input 
                                     type="text" 
-                                    name='cidade' 
+                                    name='cidade'
+                                    value={cidade} 
                                     className='form-control'
                                     required 
                                     onChange={handleState}
